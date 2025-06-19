@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DockerLabs</title>
+  <style>
+    body {
+      background-color: #0d1117;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+       padding-bottom: 60px;
+     
+    }
+    .cabecera {
+      background-color: #2a0909e9;
+     
+      width: 100%;
+      padding: 1px 0;
+     
+       box-shadow: 0 2px 5px rgb(253, 247, 247);
+    }
+   
+    .titulo {
+     padding: 5px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 50px;
+   
+    }
+    .mensaje {
+      display: none; 
+    }
+    .Categoria {
+      display: none;
+      font-size: 36px;
+      color: #00bfff;
+    }
+    .Categoria2 {
+      display: none;
+      font-size: 36px;
+      color: #00bfff;
+    }
+    .Categoria3 {
+      display: none;
+      font-size: 36px;
+      color: #00bfff;
+    }
+    .Categoria4 {
+      display: none;
+      font-size: 36px;
+      color: #00bfff;
+    }
+    .Categoria5 {
+      display: none;
+      font-size: 36px;
+      color: #00bfff;
+    }
+
+    .filter-buttons {
+      background-color: #862828; 
+        padding: 30px 20px;
+       
+      margin-bottom: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      box-shadow: 0 3px 5px rgb(253, 247, 247);
+
+      
+    }
+
+    .filter-buttons button {
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 130px;
+      height: 35px;
+      font-size: 18px;
+      box-shadow: 0 3px 5px rgb(253, 247, 247);
+    }
+
+    .btn-muy-facil { background-color: #00bfff; }
+    .btn-facil { background-color: #2ecc71; }
+    .btn-medio { background-color: #f1c40f; color: #000; }
+    .btn-dificil { background-color: #c72412; }
+    .btn-todos { background-color: #6e8caa; }
+
+    .btn-muy-facil:hover {
+      background-color: #026789;
+    }
+
+    .btn-muy-facil:active {
+      transform: scale(0.96);
+      box-shadow: 0 0 0 3px rgba(190, 204, 218, 0.4);
+    }
+    .btn-facil:hover {
+      background-color: #02892f;
+    }
+    .btn-facil:active {
+      transform: scale(0.96);
+      box-shadow: 0 0 0 3px rgba(190, 204, 218, 0.4);
+    }
+
+    .btn-medio:hover {
+      background-color: #e79908;
+    }
+    .btn-medio:active {
+      transform: scale(0.96);
+      box-shadow: 0 0 0 3px rgba(190, 204, 218, 0.4);
+    }
+    .btn-dificil:hover {
+      background-color: #790202;
+    }
+    .btn-dificil:active {
+      transform: scale(0.96);
+      box-shadow: 0 0 0 3px rgba(190, 204, 218, 0.4);
+    }
+     .btn-todos:hover {
+      background-color: #032b98;
+    }
+    .btn-todos:active {
+      transform: scale(0.96);
+      box-shadow: 0 0 0 3px rgba(190, 204, 218, 0.4);
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .card {
+      background-color: #161b22;
+      border-left: 8px solid;
+      padding: 15px;
+      border-radius: 8px;
+      width: calc(20% - 15px);
+      box-sizing: border-box;
+      display: none;
+    }
+
+    .muy-facil { border-color: #00bfff; }
+    .facil { border-color: #2ecc71; }
+    .medio { border-color: #f1c40f; }
+    .dificil { border-color: #e74c3c; }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 16px;
+    }
+
+    .card .actions {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .card .actions a, .card .actions button {
+      flex: 1 1 30%;
+      min-width: 80px;
+      background-color: #21262d;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .card .actions a:hover, .card .actions button:hover {
+      background-color: #30363d;
+    }
+   
+
+    .footer {
+     
+      border-top: 1px solid #eeeded;
+     display: flex;
+      
+      justify-content: space-between;
+      background-color: #862828;
+       position: fixed;
+       bottom: 0;
+       left: 0;
+       width: 100%;
+       padding: 0px 0;
+       box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+     
+
+    }
+    .footer h3 {
+      color: #A70A15;
+      font-size: 15px;
+      font-weight: 400;
+     
+
+    }
+    .links ul {
+      display: flex;
+    }
+
+    .links ul li {
+      margin-right: 35px;
+    }
+
+     .links ul li a {
+      color: #d3cdcd;
+    }
+    h1 {
+      display: none;
+    }
+    .cuadro1 {
+        
+        width: 400px;
+      height: auto;
+     position: absolute;
+     top: 400px;
+     left: 600px;
+
+    }
+
+  </style>
+  
+</head>
+<body>
+    <div class="cabecera">
+      
+        <h2 class="titulo">Docker-Machins</h2>
+        
+    </div>
+  
+   
+  <div class="filter-buttons">
+    <button class="btn-muy-facil" onclick="filterCards('muy-facil'), mostrar_mensaje('mensaje')">Muy Fácil (<span id="count-muy-facil">0</span>)</button>
+    <button class="btn-facil" onclick="filterCards('facil'), mostrar_mensaje2('mensaje2')">Fácil (<span id="count-facil">0</span>)</button>
+    <button class="btn-medio" onclick="filterCards('medio'), mostrar_mensaje3('mensaje3')">Medio (<span id="count-medio">0</span>)</button>
+    <button class="btn-dificil" onclick="filterCards('dificil'), mostrar_mensaje4('mensaje4')">Difícil (<span id="count-dificil">0</span>)</button>
+    <button class="btn-todos" onclick="filterCards('todos'), mostrar_mensaje5('mensaje5')">Todos (<span id="count-todos">0</span>)</button>
+  </div>
+  
+  
+  <h1 id="mensaje">Categoria Muy-Facil</h1>
+  <h1 id="mensaje2">Categoria Facil</h1>
+   <h1 id="mensaje3">Categoria Medio</h1>
+  <h1 id="mensaje4">Categoria Dificil</h1>
+  <h1 id="mensaje5">Categoria Todas</h1>
+  <div class="container">
+    
+    <!-- Muy fácil -->
+    <div class="card muy-facil"><h3>Lab Muy Fácil 1</h3><div class="actions"><a href="https://mega.nz/file/ejemplo1" target="_blank">​📂Descargar</a><button onclick="mostrarCuadro1('imagen1')">💡​​Descripción</button><button>📖 ​Info</button></div></div>
+    <div class="card muy-facil"><h3>Lab Muy Fácil 2</h3><div class="actions"><a href="https://mega.nz/file/ejemplo2" target="_blank">​📂Descargar</a><button>💡​​Descripción</button><button>📖     ​Info</button></div></div>
+    <div class="card muy-facil"><h3>Lab Muy Fácil 3</h3><div class="actions"><a href="https://mega.nz/file/ejemplo3" target="_blank">​📂Descargar</a><button>​💡​​Descripción</button><button>📖     ​Info</button></div></div>
+
+    <!-- Fácil -->
+    <div class="card facil"><h3>OpenStudio</h3><div class="actions"><a href="https://mega.nz/file/tGQy1QRL#h2NZdngmemM12iAeE3wqi9jv1xO9Q1TWd6XUxZwOauE" target="_blank">​📂​Descargar</a><button onclick="mostrarCuadro0('imagen0')" >💡​Descripción</button><button>📖     ​Info</button></div></div>
+    <div class="card facil"><h3>Web2</h3><div class="actions"><a href="https://mega.nz/file/MHBSULLS#FdtVzCFmLuvrt3eT467dnD0TTr_KIxeaZjq2NNsxCRY" target="_blank">​📂​Descargar</a><button onclick="mostrarCuadro1('imagen1')" >💡​Descripción</button><button>📖  ​Info</button></div></div>
+    <div class="card facil"><h3>MyLogin</h3><div class="actions"><a href="https://mega.nz/file/wGpHSQRS#YKY4qc-ny6um0KpIC1uo7e-ClnKIf7nd68PsFpwNGTc" target="_blank">​📂​Descargar</a><button onclick="mostrarCuadro2('imagen2')" >💡​Descripción</button><button>📖     ​Info</button></div></div>
+    <div class="card facil"><h3>Trust</h3><div class="actions"><a href="https://mega.nz/file/4TAEWL5L#P0NymsYGoGsVIvjPwEfDJC9UVY-6CkwFgka85-K5W7w" target="_blank">​📂​Descargar</a><button onclick="mostrarCuadro4('imagen4')">💡​Descripción</button><button>📖     ​Info</button></div></div>
+    <div class="card facil"><h3>psycho</h3><div class="actions"><a href="https://mega.nz/file/dOp2harC#YC_iX2B_CuBgPJeYomtyZxby9LD98JWwSfYJqeAXzns" target="_blank">​📂​Descargar</a><button onclick="mostrarCuadro5('imagen5')" >💡​Descripción</button><button>📖     ​Info</button></div></div>
+    <div class="card facil"><h3>pequeñas-mentirosas</h3><div class="actions"><a href="https://mega.nz/file/EGYwTTDK#1J9ZexN7j1qC026HbSqjvgX2rndk1io7kt8-oMwivwM" target="_blank">​📂​Descargar</a><button onclick="mostrarCuadro6('imagen6')">💡​Descripción</button><button>📖     ​Info</button></div></div>
+    <div class="card facil"><h3>chocolate</h3><div class="actions"><a href="https://mega.nz/file/YHYQxCBK#V5aaOQiWZYXC261b__3YeYz1O2IxhORT1QEYLZmWocE" target="_blank">​📂​Descargar</a><button onclick="mostrarCuadro7('imagen7')">💡​Descripción</button><button>📖     ​Info</button></div></div>
+    
+    <!-- Medio -->
+    <div class="card medio"><h3>Anonymous</h3><div class="actions"><a href="https://mega.nz/file/4bRUxCbT#rNaXKPpxbbmCnbvpjzSpl_n5lmgV1deQB3XmQVPtLQ4" target="_blank">​📂​Descargar</a><button onclick="mostrarCuadro8('imagen8')">💡​Descripción</button><button>📖     ​Info</button></div></div>
+    <div class="card medio"><h3>Vacaciones</h3><div class="actions"><a href="https://mega.nz/file/RGR0zKAb#I6zy4DSt_4yB6hVRAFODhdRoDvdzuLCy6ARg2LdxKWU" target="_blank">​📂​Descargar</a><button onclick="mostrarCuadro9('imagen9')">💡​Descripción</button><button>📖     ​Info</button></div></div>
+    <div class="card medio"><h3>Apolos</h3><div class="actions"><a href="https://mega.nz/file/wS4QDRzJ#9xSOwupo_xV1K4nWN_VuTbZwvKew8WWz9XTjL52GpnQ" target="_blank">​📂​Descargar</a><button onclick="mostrarCuadro10('imagen10')">💡​Descripción</button><button>📖​     Info</button></div></div>
+    <div class="card medio"><h3>Report</h3><div class="actions"><a href="https://mega.nz/file/kHAlDbba#2ys8NjpumHeIpQPslhol0RlaL5Sf8K0H4PL1lEVxZhc" target="_blank">​📂​Descargar</a><button onclick="mostrarCuadro11('imagen11')">💡​Descripción</button><button>📖     ​Info</button></div></div>
+    <div class="card medio"><h3>Inclusion</h3><div class="actions"><a href="https://mega.nz/file/pLwChL7A#0E54ky6tJJgEr9aumoPz9t82xgM7OaalIWPGFFe-4II" target="_blank">​📂​Descargar</a><button onclick="mostrarCuadro12('imagen12')">💡​Descripción</button><button >📖​I     nfo</button></div></div>
+    
+    
+
+    <!-- Difícil -->
+    <div class="card dificil"><h3>Canario</h3><div class="actions"><a href="https://mega.nz/file/AboQALoI#g9YH_YhImwJ337Em6_M2wsdpvnTSemEYvg32J-R2wzE" target="_blank">​📂​Descargar</a><button onclick="mostrarCuadro13('imagen13')">💡​Descripción</button><button>📖     ​Info</button></div></div>
+    <div class="card dificil"><h3>Vulnerame</h3><div class="actions"><a href="https://mega.nz/file/ZXJCSIbZ#BO3zqbTMLi4lvSE5mCZwcqn8pZ6c5etEvxpgOkHpBsU" target="_blank">​📂​Descargar</a><button onclick="mostrarCuadro14('imagen14')">💡​Descripción</button><button>📖     ​Info</button></div></div>
+    <div class="card dificil"><h3>Lab Difícil 3</h3><div class="actions"><a href="https://mega.nz/file/ejemplo12" target="_blank">​📂​Descargar</a><button>💡​Descripción</button><button>📖Info</button></div></div>
+    <div class="card dificil"><h3>Lab Difícil 3</h3><div class="actions"><a href="https://mega.nz/file/ejemplo12" target="_blank">​📂​Descargar</a><button>💡​Descripción</button><button>📖Info</button></div></div>
+    <div class="card dificil"><h3>Lab Difícil 3</h3><div class="actions"><a href="https://mega.nz/file/ejemplo12" target="_blank">​📂​Descargar</a><button>💡​Descripción</button><button>📖Info</button></div></div>
+    <div class="card dificil"><h3>Lab Difícil 3</h3><div class="actions"><a href="https://mega.nz/file/ejemplo12" target="_blank">​📂​Descargar</a><button>💡​Descripción</button><button>📖Info</button></div></div>
+
+  </div>
+
+  <script>
+    function filterCards(category) {
+    
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        card.style.display = 'none';
+      });
+
+      if (category === 'todos') {
+        cards.forEach(card => {
+          card.style.display = 'block';
+        });
+      } else {
+        const selected = document.querySelectorAll('.' + category);
+        selected.forEach(card => {
+          card.style.display = 'block';
+        });
+      }
+    }
+
+    function updateCounts() {
+      const categories = ['muy-facil', 'facil', 'medio', 'dificil'];
+      let total = 0;
+      categories.forEach(cat => {
+        const count = document.querySelectorAll('.' + cat).length;
+        document.getElementById('count-' + cat).textContent = count;
+        total += count;
+      });
+      document.getElementById('count-todos').textContent = total;
+    }
+
+    filterCards('todos');
+    updateCounts();
+  </script>
+  <script>
+      function mostrar_mensaje() {
+        document.getElementById("mensaje").style.display = "block";
+        document.getElementById("mensaje2").style.display = "none";
+        document.getElementById("mensaje3").style.display = "none";
+        document.getElementById("mensaje4").style.display = "none";
+         document.getElementById("mensaje5").style.display = "none";
+     
+    }
+  </script>
+  <script>
+      function mostrar_mensaje2() {
+        document.getElementById("mensaje2").style.display = "block";
+        document.getElementById("mensaje").style.display = "none";
+        document.getElementById("mensaje3").style.display = "none";
+        document.getElementById("mensaje4").style.display = "none";
+         document.getElementById("mensaje5").style.display = "none";
+     
+    }
+  </script>
+  <script>
+      function mostrar_mensaje3() {
+        document.getElementById("mensaje2").style.display = "none";
+        document.getElementById("mensaje").style.display = "none";
+        document.getElementById("mensaje3").style.display = "block";
+        document.getElementById("mensaje4").style.display = "none";
+         document.getElementById("mensaje5").style.display = "none";
+     
+    }
+  </script>
+  <script>
+      function mostrar_mensaje4() {
+        document.getElementById("mensaje2").style.display = "none";
+        document.getElementById("mensaje").style.display = "none";
+        document.getElementById("mensaje3").style.display = "none";
+        document.getElementById("mensaje4").style.display = "block";
+         document.getElementById("mensaje5").style.display = "none";
+     
+    }
+  </script>
+  <script>
+      function mostrar_mensaje5() {
+        document.getElementById("mensaje2").style.display = "none";
+        document.getElementById("mensaje").style.display = "none";
+        document.getElementById("mensaje3").style.display = "none";
+        document.getElementById("mensaje4").style.display = "none";
+         document.getElementById("mensaje5").style.display = "block";
+     
+    }
+  </script>
+  <script>
+    function mostrarCuadro0() {
+
+        document.getElementById("imagen0").style.display = "block";
+    }
+    function mostrarCuadro1() {
+
+        document.getElementById("imagen1").style.display = "block";
+    }
+      
+     function mostrarCuadro4(){
+        document.getElementById("imagen4").style.display = "block";
+    }
+    function mostrarCuadro2(){
+        document.getElementById("imagen2").style.display = "block";
+    }
+     function mostrarCuadro5(){
+        document.getElementById("imagen5").style.display = "block";
+    }
+    function mostrarCuadro6(){
+        document.getElementById("imagen5").style.display = "block";
+    }
+    function mostrarCuadro7(){
+        document.getElementById("imagen7").style.display = "block";
+    }
+    function mostrarCuadro8(){
+        document.getElementById("imagen8").style.display = "block";
+    }
+    function mostrarCuadro9(){
+        document.getElementById("imagen9").style.display = "block";
+    }
+    function mostrarCuadro10(){
+        document.getElementById("imagen10").style.display = "block";
+    }
+    function mostrarCuadro11(){
+        document.getElementById("imagen11").style.display = "block";
+    }
+    function mostrarCuadro12(){
+        document.getElementById("imagen12").style.display = "block";
+    }
+    function mostrarCuadro13(){
+        document.getElementById("imagen13").style.display = "block";
+    }
+    function mostrarCuadro14(){
+        document.getElementById("imagen14").style.display = "block";
+    }
+  </script>
+  <script>
+    function cerrarImagen() {
+        document.getElementById("imagen0").style.display = "none";
+        document.getElementById("imagen1").style.display = "none";
+        document.getElementById("imagen2").style.display = "none";
+        document.getElementById("imagen4").style.display = "none";
+        document.getElementById("imagen5").style.display = "none";
+        document.getElementById("imagen6").style.display = "none";
+        document.getElementById("imagen7").style.display = "none";
+        document.getElementById("imagen8").style.display = "none";
+        document.getElementById("imagen9").style.display = "none";
+        document.getElementById("imagen10").style.display = "none";
+        document.getElementById("imagen11").style.display = "none";
+        document.getElementById("imagen12").style.display = "none";
+        document.getElementById("imagen13").style.display = "none";
+        document.getElementById("imagen14").style.display = "none";
+
+    }
+  </script>
+
+  
+
+
+      <footer class="footer container">
+        <h3>Logo</h3>
+        <div class="links">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Informacions</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </div>
+      </footer>
+      <div class="Cuadro1">
+            <img id="imagen0" src="/imagenes/CuadroOpenStrudio.png" class="cuadro1" alt="" onclick="cerrarImagen()">
+            <img id="imagen1" src="/imagenes/Cuadro Descripcion.png" class="cuadro1" alt="" onclick="cerrarImagen()">
+             <img id="imagen2" src="/imagenes/CuadroMyLogin.png" class="cuadro1" alt="" onclick="cerrarImagen()">
+             <img id="imagen4" src="/imagenes/CuadroTrust.png" class="cuadro1" alt="" onclick="cerrarImagen()">
+            <img id="imagen5" src="/imagenes/CuadroPhyso.png" class="cuadro1" alt="" onclick="cerrarImagen()">
+            <img id="imagen6" src="/imagenes/CuadroPequenas-Mentirosas.png" class="cuadro1" alt="" onclick="cerrarImagen()">
+            <img id="imagen7" src="/imagenes/CuadroChocolate.png" class="cuadro1" alt="" onclick="cerrarImagen()">
+            <img id="imagen8" src="/imagenes/CuadroAnonymous.png" class="cuadro1" alt="" onclick="cerrarImagen()">
+            <img id="imagen9" src="/imagenes/CuadroVacaciones.png" class="cuadro1" alt="" onclick="cerrarImagen()">
+            <img id="imagen10" src="/imagenes/CuadroApolo.png" class="cuadro1" alt="" onclick="cerrarImagen()">
+            <img id="imagen11" src="/imagenes/CuadroReport.png" class="cuadro1" alt="" onclick="cerrarImagen()">
+            <img id="imagen12" src="/imagenes/CuadroInclusion.png" class="cuadro1" alt="" onclick="cerrarImagen()">
+            <img id="imagen13" src="/imagenes/CuadroCanario.png" class="cuadro1" alt="" onclick="cerrarImagen()">
+            <img id="imagen14" src="/imagenes/CuadroVulnerame.png" class="cuadro1" alt="" onclick="cerrarImagen()">
+      </div>
+      
+      <script>
+  
+        document.getElementById("mensaje5").style.display = "block"
+        document.getElementById("imagen1").style.display = "none"
+         document.getElementById("imagen2").style.display = "none"
+        document.getElementById("imagen4").style.display = "none"
+
+        document.getElementById("imagen5").style.display = "none"
+        document.getElementById("imagen6").style.display = "none"
+        document.getElementById("imagen7").style.display = "none"
+        document.getElementById("imagen8").style.display = "none"
+        document.getElementById("imagen9").style.display = "none"
+        document.getElementById("imagen10").style.display = "none"
+        document.getElementById("imagen11").style.display = "none"
+        document.getElementById("imagen12").style.display = "none"
+        document.getElementById("imagen13").style.display = "none"
+        document.getElementById("imagen14").style.display = "none"
+
+
+        document.getElementById("imagen0").style.display = "none"
+
+      </script>
+
+      
+  </body>
+</html>
